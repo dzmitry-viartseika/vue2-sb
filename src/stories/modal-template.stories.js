@@ -9,6 +9,7 @@ export default {
         header: { control: 'header' },
         content: { control: 'content' },
         showModal: { control: 'boolean'},
+        handleClick: { action: 'handleClick' }
     },
 }
 
@@ -16,7 +17,10 @@ const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),
     components: { ModalTemplate, ButtonTemplate },
     template:
-        `<ModalTemplate v-model="showModal">
+        `<ModalTemplate 
+            v-model="showModal"
+            :showCloseIcon="showCloseIcon"
+        >
       <template slot="header">
         {{ header }}
       </template>
@@ -26,13 +30,13 @@ const Template = (args, { argTypes }) => ({
       <template slot="footer">
         <ButtonTemplate
             v-bind="$props"
-            @click="clickCancel"
+            @handleClick="clickOk"
             background=""
             buttonText="OK"
         />
         <ButtonTemplate
             v-bind="$props"
-            @click="clickCancel"
+            @handleClick="clickCancel"
             background=""
             buttonText="Cancel"
         />
@@ -44,14 +48,10 @@ const Template = (args, { argTypes }) => ({
     },
 });
 
-// template: '<ButtonTemplate v-bind="$props" @handleClick="action" />',
-//     methods: {
-//     action: action('button-clicked')
-// }
-
 export const Default = Template.bind({});
 Default.args = {
     header: 'Header text',
     content: 'Content text',
     showModal: true,
+    showCloseIcon: true,
 };
