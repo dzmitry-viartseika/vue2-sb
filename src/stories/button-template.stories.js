@@ -19,9 +19,3 @@ const Template = (args, { argTypes }) => ({
 //👇 Each story then reuses that template
 export const Primary = Template.bind({});
 Primary.args = { background: '', buttonText: 'Button' };
-
-export const Secondary = Template.bind({});
-Secondary.args = { ...Primary.args, buttonText: 'Secondary', icon: 'upload' };
-
-export const Tertiary = Template.bind({});
-Tertiary.args = { ...Primary.args, buttonText: 'Tertiary'};

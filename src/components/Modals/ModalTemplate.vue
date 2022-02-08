@@ -1,26 +1,22 @@
 <template>
-  <div class="ui dimmer modals page" :class="[showModal ? 'visible active' : '']">
-    <div class="ui modal" :class="[showModal ? 'visible active' : '']" :style="[showModal ? { display: 'block' } : { display: 'none' } ]">
-      <i v-if="showCloseIcon" class="close icon" @click="close"></i>
+  <div class="ui dimmer modals page"
+       :class="[showModal ? 'visible active' : '']">
+    <div class="ui modal"
+         :class="[showModal ? 'visible active' : '']"
+         :style="[showModal ? { display: 'block' } : { display: 'none' } ]">
+
+      <i v-if="showCloseIcon" class="close icon" @click="close">X</i>
 
       <div class="header">
-        <slot name="header">
-          header
-        </slot>
+        <slot name="header"></slot>
       </div>
 
       <div class="content">
-        <slot name="content">
-          <p>Content</p>
-        </slot>
+        <slot name="content"></slot>
       </div>
 
       <div class="actions">
-        <slot name="footer">
-          <div class="ui positive right button" @click="close">
-            OK
-          </div>
-        </slot>
+        <slot name="footer"></slot>
       </div>
     </div>
   </div>
@@ -45,12 +41,9 @@ export default {
     },
   },
   methods: {
-    close () {
-      this.$emit('changed', false)
-    },
-    open () {
-      this.$emit('changed', true)
-    },
-  },
+    close() {
+      this.$emit('changed', false);
+    }
+  }
 }
 </script>

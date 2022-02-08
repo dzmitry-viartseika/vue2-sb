@@ -3,7 +3,7 @@
     <hr>
     <button-template
         @handleClick="handleClick"
-        button-text="Button text"
+        button-text="Show Modal"
         background="red"
     />
     <hr>
@@ -17,7 +17,24 @@
         @inputFocusStatus="inputFocusStatus"
     />
     <hr>
-    <modal-template />
+    <modal-template
+      :show-modal="isVisibleModal"
+      :show-close-icon="true"
+      @changed="changeModalCondition"
+    >
+      <div slot="header">
+        Header
+      </div>
+      <div slot="content">
+        Content
+      </div>
+      <div slot="footer">
+        <button-template
+            @handleClick="changeModalCondition(false)"
+            button-text="OK"
+        />
+      </div>
+    </modal-template>
   </div>
 </template>
 
@@ -36,16 +53,20 @@ export default {
   data: () => ({
     inputValue: '',
     autofocus: true,
+    isVisibleModal: false,
   }),
   methods: {
-    handleClick(e) {
-      console.log('handleClick', e)
+    handleClick() {
+      this.isVisibleModal = true;
     },
     changeValue(value) {
       this.inputValue = value;
     },
     inputFocusStatus(data) {
       this.autofocus = data;
+    },
+    changeModalCondition(data) {
+      this.isVisibleModal = data;
     }
   }
 }

@@ -24,8 +24,18 @@ const Template = (args, { argTypes }) => ({
         {{ content }}
       </template>
       <template slot="footer">
-        <ButtonTemplate name="キャンセル" className="black" :useDiv="true" @click="clickCancel" />
-        <ButtonTemplate name="OK" className="primary right" :useDiv="true" @click="clickOk" />
+        <ButtonTemplate
+            v-bind="$props"
+            @click="clickCancel"
+            background=""
+            buttonText="OK"
+        />
+        <ButtonTemplate
+            v-bind="$props"
+            @click="clickCancel"
+            background=""
+            buttonText="Cancel"
+        />
       </template>
     </ModalTemplate>`,
     methods: {
@@ -34,9 +44,14 @@ const Template = (args, { argTypes }) => ({
     },
 });
 
+// template: '<ButtonTemplate v-bind="$props" @handleClick="action" />',
+//     methods: {
+//     action: action('button-clicked')
+// }
+
 export const Default = Template.bind({});
 Default.args = {
-    header: 'モーダルヘッダー',
-    content: 'モーダルコンテンツ',
+    header: 'Header text',
+    content: 'Content text',
     showModal: true,
 };
