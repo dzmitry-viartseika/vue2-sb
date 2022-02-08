@@ -17,19 +17,21 @@
         @inputFocusStatus="inputFocusStatus"
     />
     <hr>
-
+    <modal-template />
   </div>
 </template>
 
 <script>
 import ButtonTemplate from '../components/Elements/ButtonTemplate';
 import InputTemplate from '../components/Elements/InputTemplate';
+import ModalTemplate from '../components/Modals/ModalTemplate';
 
 export default {
   name: 'Home',
   components: {
     ButtonTemplate,
     InputTemplate,
+    ModalTemplate,
   },
   data: () => ({
     inputValue: '',
