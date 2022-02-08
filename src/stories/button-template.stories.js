@@ -13,7 +13,7 @@ const Template = (args, { argTypes }) => ({
     template: '<ButtonTemplate v-bind="$props" @handleClick="action" />',
     methods: {
         action: action('button-clicked')
-    }
+    },
 });
 
 //👇 Each story then reuses that template

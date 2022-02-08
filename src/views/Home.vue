@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    https://jsonformatter.org/scss-to-css
     <hr>
     <button-template
         @handleClick="handleClick"
@@ -35,6 +36,8 @@
         />
       </div>
     </modal-template>
+    <hr>
+    <dropdown :dropdownOptions="dropdownOptions"/>
   </div>
 </template>
 
@@ -42,6 +45,7 @@
 import ButtonTemplate from '../components/Elements/ButtonTemplate';
 import InputTemplate from '../components/Elements/InputTemplate';
 import ModalTemplate from '../components/Modals/ModalTemplate';
+import Dropdown from '../components/Elements/Dropdown';
 
 export default {
   name: 'Home',
@@ -49,12 +53,29 @@ export default {
     ButtonTemplate,
     InputTemplate,
     ModalTemplate,
+    Dropdown,
   },
   data: () => ({
     inputValue: '',
     autofocus: true,
     isVisibleModal: false,
   }),
+  computed: {
+    dropdownOptions() {
+      return {
+        list: [
+          {
+            code: 'Ru',
+            text: 'Russian',
+          },
+          {
+            code: 'En',
+            text: 'English',
+          },
+        ],
+      };
+    },
+  },
   methods: {
     handleClick() {
       this.isVisibleModal = true;
