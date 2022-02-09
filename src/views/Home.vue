@@ -38,11 +38,13 @@
     <hr>
     <dropdown :dropdownOptions="dropdownOptions"/>
     <hr>
-<!--    // TODO сделать-->
-<!--    <check-box-->
-<!--        name="test text"-->
-<!--        checkbox-text="Wertey"-->
-<!--    />-->
+    valueCheckbox={{ valueCheckbox }}
+    <check-box
+        name="test"
+        checkbox-text="Wertey"
+        :value="valueCheckbox"
+        @changeCheckBox="changeCheckBox"
+    />
     <hr>
     <app-file
         :file="file"
@@ -53,6 +55,18 @@
     <hr>
     <radio name="method" value="phone" label="Phone" id="phone" @input="changeRadioValue"></radio>
     <radio name="method" value="email" label="Email" id="email" @input="changeRadioValue"></radio>
+  <!--
+      appFile +
+      breadCrumbs +
+      buttonTemplate +
+      loader +
+      modal +
+      radio +
+      Accordion -
+      Dropdown -
+      pagination -
+      checkbox +
+      -->
   </div>
 </template>
 
@@ -60,7 +74,7 @@
 import ButtonTemplate from '../components/Elements/ButtonTemplate';
 import InputTemplate from '../components/Elements/InputTemplate';
 import Radio from '../components/Elements/Radio';
-// import CheckBox from '../components/Elements/Сheckbox';
+import CheckBox from '../components/Elements/Сheckbox';
 import AppFile from '../components/Elements/AppFile';
 import ModalTemplate from '../components/Modals/ModalTemplate';
 import Dropdown from '../components/Elements/Dropdown';
@@ -73,7 +87,7 @@ export default {
     InputTemplate,
     ModalTemplate,
     Dropdown,
-    // CheckBox,
+    CheckBox,
     AppFile,
     Loader,
     Radio,
@@ -86,6 +100,7 @@ export default {
     radioValue: '',
     selectedRadio: '',
     isLoader: true,
+    valueCheckbox: false,
   }),
   created() {
     setTimeout(() => {
@@ -130,6 +145,9 @@ export default {
     },
   },
   methods: {
+    changeCheckBox(data) {
+      this.valueCheckbox = data;
+    },
     changeRadioValue(data) {
       this.radioValue = data;
     },

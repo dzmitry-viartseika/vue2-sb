@@ -1,7 +1,6 @@
 <template>
   <label
       class="app-checkbox"
-      @click="toggleValue($event)"
   >
     <input
         v-model="statusCheckbox"
@@ -13,36 +12,16 @@
         :class="{'app-icon-check-mark': value}"
         class="app-checkbox__icon"
     ></i>
-    <template v-if="checkboxText">
-      <InputTemplate
-          v-if="stepsField"
-          :autofocus="autofocus"
-          :value="inputValue"
-          type-input="text"
-          class="app-checkbox__text-field"
-          label-text="labelText"
-          placeholder-text="Enter your text"
-          @inputFocusStatus="$emit('inputFocusStatus', $event)"
-          @changeValue="changeValue"
-      />
-      <span
-          v-else
-          :class="checkboxValueClass ? `app-checkbox__value ${checkboxValueClass}` : 'app-checkbox__value'"
-      >
-        {{ checkboxText }}
-      </span>
-    </template>
+    <div>
+      {{ checkboxText }}
+    </div>
   </label>
 </template>
 
 <script>
-import InputTemplate from '../components/Elements/InputTemplate';
 
 export default {
   name: 'CheckBox',
-  components: {
-    InputTemplate,
-  },
   props: {
     value: {
       type: Boolean,
@@ -65,30 +44,13 @@ export default {
     },
   },
   computed: {
-    checkboxTextModel: {
-      get() {
-        return this.checkboxText;
-      },
-      set(data) {
-        this.$emit('update:checkboxText', data);
-      },
-    },
     statusCheckbox: {
       get() {
         return this.value;
       },
       set(data) {
         this.$emit('changeCheckBox', data);
-        this.$emit('update:value', data);
       },
-    },
-  },
-  methods: {
-    toggleValue(e) {
-      if (this.stepsField) {
-        e.stopPropagation();
-        e.preventDefault();
-      }
     },
   },
 };
