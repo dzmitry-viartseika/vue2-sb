@@ -57,20 +57,7 @@
     <radio name="method" value="email" label="Email" id="email" @input="changeRadioValue"></radio>
     <hr>
     <Accordion :items="items"/>
-    <hr>
-
-  <!--
-      appFile +
-      breadCrumbs +
-      buttonTemplate +
-      loader +
-      modal +
-      radio +
-      Accordion +
-      Dropdown -
-      pagination -
-      checkbox +
-      -->
+    <hr>full
   </div>
 </template>
 
