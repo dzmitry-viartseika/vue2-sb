@@ -18,7 +18,7 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const FirstStory = Template.bind({});
-Default.args = {
+FirstStory.args = {
     name: 'test',
     checkboxText: 'Wertey',
     value: true,

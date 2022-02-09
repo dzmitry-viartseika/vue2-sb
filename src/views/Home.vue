@@ -55,6 +55,8 @@
     <hr>
     <radio name="method" value="phone" label="Phone" id="phone" @input="changeRadioValue"></radio>
     <radio name="method" value="email" label="Email" id="email" @input="changeRadioValue"></radio>
+    <hr>
+    <Accordion :items="items"/>
   <!--
       appFile +
       breadCrumbs +
@@ -79,6 +81,7 @@ import AppFile from '../components/Elements/AppFile';
 import ModalTemplate from '../components/Modals/ModalTemplate';
 import Dropdown from '../components/Elements/Dropdown';
 import Loader from '../components/Elements/Loader';
+import Accordion from '../components/Elements/Accordion';
 
 export default {
   name: 'Home',
@@ -91,6 +94,7 @@ export default {
     AppFile,
     Loader,
     Radio,
+    Accordion,
   },
   data: () => ({
     inputValue: '',
@@ -112,6 +116,25 @@ export default {
       return  {
         name: 'wertey'
       }
+    },
+    items() {
+      return [
+        {
+          id: 1,
+          title: 'Title1',
+          content: 'Content1'
+        },
+        {
+          id: 2,
+          title: 'Title2',
+          content: 'Content2'
+        },
+        {
+          id: 3,
+          title: 'Title3',
+          content: 'Content3'
+        },
+      ]
     },
     positionList() {
       return [

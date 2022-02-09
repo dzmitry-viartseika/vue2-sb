@@ -16,8 +16,13 @@
 
 <script>
 export default {
-  name: 'accordion',
-  props: ['items'],
+  name: 'Accordion',
+  props: {
+    items: {
+      type: Array,
+      required: true,
+    }
+  },
   data: () => ({
     activeItem: -1,
   }),
