@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    https://jsonformatter.org/scss-to-css
     <hr>
     <button-template
         @handleClick="handleClick"
@@ -38,14 +37,34 @@
     </modal-template>
     <hr>
     <dropdown :dropdownOptions="dropdownOptions"/>
+    <hr>
+<!--    // TODO сделать-->
+<!--    <check-box-->
+<!--        name="test text"-->
+<!--        checkbox-text="Wertey"-->
+<!--    />-->
+    <hr>
+    <app-file
+        :file="file"
+        @addNewFile="addNewFile"
+    />
+    <hr>
+    <loader :isLoader="isLoader"/>
+    <hr>
+    <radio name="method" value="phone" label="Phone" id="phone" @input="changeRadioValue"></radio>
+    <radio name="method" value="email" label="Email" id="email" @input="changeRadioValue"></radio>
   </div>
 </template>
 
 <script>
 import ButtonTemplate from '../components/Elements/ButtonTemplate';
 import InputTemplate from '../components/Elements/InputTemplate';
+import Radio from '../components/Elements/Radio';
+// import CheckBox from '../components/Elements/Сheckbox';
+import AppFile from '../components/Elements/AppFile';
 import ModalTemplate from '../components/Modals/ModalTemplate';
 import Dropdown from '../components/Elements/Dropdown';
+import Loader from '../components/Elements/Loader';
 
 export default {
   name: 'Home',
@@ -54,13 +73,47 @@ export default {
     InputTemplate,
     ModalTemplate,
     Dropdown,
+    // CheckBox,
+    AppFile,
+    Loader,
+    Radio,
   },
   data: () => ({
     inputValue: '',
     autofocus: true,
     isVisibleModal: false,
+    file: '',
+    radioValue: '',
+    selectedRadio: '',
+    isLoader: true,
   }),
+  created() {
+    setTimeout(() => {
+      this.isLoader = false;
+    }, 1000)
+  },
   computed: {
+    settings() {
+      return  {
+        name: 'wertey'
+      }
+    },
+    positionList() {
+      return [
+        {
+          id: 1,
+          position: 'left',
+        },
+        {
+          id: 2,
+          position: 'right',
+        },
+        {
+          id: 3,
+          position: 'center',
+        },
+      ]
+    },
     dropdownOptions() {
       return {
         list: [
@@ -77,8 +130,14 @@ export default {
     },
   },
   methods: {
+    changeRadioValue(data) {
+      this.radioValue = data;
+    },
     handleClick() {
       this.isVisibleModal = true;
+    },
+    addNewFile(data) {
+      this.file = data;
     },
     changeValue(value) {
       this.inputValue = value;

@@ -2,25 +2,49 @@
   <div class="container">
     <div class="large-12 medium-12 small-12 cell">
       <label>File
-        <input type="file" id="file" ref="file" @change="handleFileUpload()"/>
+        <input-template
+            ref="file"
+            placeholder-text="Enter your text"
+            label-text="labelText"
+            type-input="file"
+            :value="file"
+            @changeValue="handleFileUpload"
+        />
       </label>
-      <button @click="submitFile()">Submit</button>
+      <button-template
+          v-if="isVisibleButton"
+          @handleClick="submitFile"
+          button-text="Add File"
+      />
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'vue-axios';
+import ButtonTemplate from './ButtonTemplate';
+import InputTemplate from './InputTemplate';
+
 export default {
   name: "AppFile",
-  data(){
-    return {
-      file: ''
+  components: {
+    ButtonTemplate,
+    InputTemplate,
+  },
+  props: {
+    file: {
+      type: String,
+      required: true,
+    },
+    isVisibleButton: {
+      type: Boolean,
+      default: false,
     }
   },
   methods: {
     handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+      if (this.$refs.file.files[0]) {
+        this.$emit('addNewFile', this.$refs.file.files[0])
+      }
     },
     submitFile() {
       let formData = new FormData();
@@ -42,10 +66,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-/*input[type="file"]{*/
-/*  position: absolute;*/
-/*  top: -500px;*/
-/*}*/
-</style>

@@ -86,7 +86,7 @@ export default {
       this.visible = false;
     },
     close(e) {
-      console.log('!this.$el.contains(e.target)', !this.$el.contains(e.target));
+      // console.log('!this.$el.contains(e.target)', !this.$el.contains(e.target));
       if (!this.$el.contains(e.target)) {
         this.visible = false;
       }
